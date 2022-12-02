@@ -9,4 +9,14 @@ public:
     IndexError() : std::runtime_error("Out of bounds of vector") {};
 };
 
+class FileError: public std::runtime_error{
+public:
+    FileError() : std::runtime_error("Unable to reach a file or file is corrupted"){}
+};
+
+class EmptyVector: public std::runtime_error{
+public:
+    EmptyVector() : std::runtime_error("Empty vector"){}
+};
+
 #endif //LAB2_EXCEPTIONS_HPP

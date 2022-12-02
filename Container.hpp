@@ -18,6 +18,11 @@ public:
     void append(Note *rec);
 
     Note* operator[](int i);
+
+    int size();
+
+    Note* find_by_tel(std::string tel);
+
 };
 
 

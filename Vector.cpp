@@ -10,7 +10,7 @@ class Vector {
 public:
     Vector() = default;
     ~Vector(){
-        delete[] values;
+        delete values;
     }
 
     Vector(const Vector<T>&  v){
@@ -54,16 +54,16 @@ public:
 
     void append(T var) {
         auto temp = new T[++length];
-        for (auto i = 0; i < length - 1 ; i++ ){
-            temp[i] = std::move(values[i]);
+        for(auto i = 0; i < length - 1; i++){
+            temp[i] = values[i];
         }
         temp[length-1] = var;
-        delete[] values;
         values = temp;
     }
 
     T &operator[](int i) {
         if (i >= length || i < -length) throw "Out of bounds";
+
         if (i < 0) {
             return values[length + i];
         } else {
@@ -73,6 +73,7 @@ public:
 
     const T &operator[](int i) const{
         if (i >= length || i < -length) throw "Out of bounds";
+
         if (i < 0) {
             return values[length + i];
         } else {
@@ -84,21 +85,21 @@ public:
         return length == 0;
     }
 
-    bool operator==(Vector<T> op){
+    bool operator==(Vector<T> op) {
         if(length != op.length) return false;
 
-        for(int i = 0; i < length; i++){
+        for(int i = 0; i < length; i++) {
             if (values[i] != op[i]) return false;
         }
         return true;
     }
 
 
-
     template<typename V>
     friend std::ostream &operator<<(std::ostream &out, const Vector<V> &v);
     template<class V>
     friend std::istream &operator>>(std::istream &in, Vector<V> &v);
+
     template<class V>
     friend Vector<bool> operator>(const Vector<V> &v1, const Vector<V> &v2);
     template<class V>
@@ -108,10 +109,12 @@ public:
 template <typename T>
 std::ostream &operator<<(std::ostream &out, const Vector<T> &v) {
     if (v.size() == 0) return out << "Nothing to print!\n";
-    for(int i = 0; i < v.size(); i++){
+
+    for(int i = 0; i < v.size(); i++) {
         out << v[i];
         if(i != v.size() - 1) out << ',';
     }
+
     return out;
 }
 
@@ -125,10 +128,12 @@ std::istream &operator>>(std::istream &in, Vector<T> &v) {
 template <typename T>
 Vector<bool> operator>(const Vector<T> &v1, const Vector<T> &v2) {
     if(v1.length != v2.length) throw "Size mismatch";
+
     Vector<bool> res(v1.length);
-    for (int i = 0; i < v1.size(); i++){
+    for (int i = 0; i < v1.size(); i++) {
         res[i] = v1[i] > v2[i];
     }
+
     return res;
 }
 
@@ -136,9 +141,11 @@ template <typename T>
 Vector<bool> operator<(const Vector<T> &v1, const Vector<T> &v2) {
     if(v1.length != v2.length) throw "Size mismatch";
     Vector<bool> res(v1.length);
-    for (int i = 0; i < v1.size(); i++){
+
+    for (int i = 0; i < v1.size(); i++) {
         res[i] = v1[i] < v2[i];
     }
+
     return res;
 }
 #endif

@@ -10,6 +10,8 @@ public:
     Note() = default;
     Note(std::string surnm, std::string nm);
     Note(std::string surnm, std::string nm, std::string tel);
+
+    Note(const Note &src);
     ~Note() = default;
 
     void set_surname(std::string surnm);
@@ -25,6 +27,10 @@ public:
     int get_year();
     int get_month();
     int get_day();
+
+    Note &operator=(const Note& src);
+    friend std::istream &operator>>(std::istream &in, Note* rec);
+    friend std::ostream &operator<<(std::ostream &out, Note* rec);
 };
 
 
