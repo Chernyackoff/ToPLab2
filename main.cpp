@@ -37,6 +37,7 @@ void note_ui(){
                 } else{
                     std::cout << "No record with such telephone number!\n";
                 }
+                break;
             }
             case 4:{
                 return;
